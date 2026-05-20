@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Annuity Calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f1e7;
+        }
+        header {
+            background-color: #cda2a2;
+            color: #31405f;
+            padding: 20px 0;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+        header h1 {
+            font-size: 24px;
+            margin-left: 20px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin-right: 20px;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #31405f;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #f5f1e7;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            background-color: #f5f1e7;
+        }
+        .hero {
+            background-color: #f5f1e7;
+            color: #31405f;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .hero a {
+            padding: 15px 30px;
+            background-color: #31405f;
+            color: #f5f1e7;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .hero a:hover {
+            background-color: #f5f1e7;
+        }
+        .content-section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .content-item {
+            background-color: #31405f;
+            padding: 20px;
+            margin: 10px;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .content-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .content-item h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        footer {
+            background-color: #cda2a2;
+            color: #31405f;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        footer p {
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-section {
+            padding: 50px;
+            max-width: 600px;
+            margin: auto;
+            background-color: #a9c1ca;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .form-section h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .form-section label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        
+        .form-section button {
+            width: 100%;
+            padding: 15px;
+            background-color: #f5f1e7;
+            color: #31405f;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .form-section button:hover {
+            background-color: #f5f1e7;
+        }
+        .table-section {
+            padding: 50px;
+            max-width: 1000px;
+            margin: auto;
+            background-color: #a9c1ca;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #31405f;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #f5f1e7;
+            color: #31405f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Annuity Calculator</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#calculator" onclick="showPage('calculator')">Annuity Calculator</a></li>
+                    <li><a href="#result" onclick="showPage('result')">Result</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h2>Welcome to Annuity Calculator Website</h2>
+        <p>"Hitung anuitas pinjaman Anda dengan mudah dan temukan rincian pembayaran bulanan berdasarkan suku bunga pilihan Anda."</p>
+        <a href="#calculator" onclick="showPage('calculator')">Calculate Annuity</a>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section hidden" id="calculator">
+        <h3>Calculate Annuity</h3>
+        <form id="anuitasForm">
+            <label for="loan">Loan Amount (Rp)</label>
+            <input type="number" id="loan" placeholder="Masukkan jumlah pinjaman" required>
+
+            <label for="interest">Interest Rate (%) per Month</label>
+            <input type="number" id="interest" placeholder="Masukkan suku bunga per bulan" required>
+
+            <label for="period">Loan Period (Months)</label>
+            <input type="number" id="period" placeholder="Masukkan jangka waktu (bulan)" required>
+
+            <button type="button" onclick="calculateAnuitas()">Calculate</button>
+        </form>
+    </section>
+
+    <!-- Result Section -->
+    <section class="table-section hidden" id="result">
+        <h3>Annuity Result</h3>
+        <table id="resultTable">
+            <thead>
+                <tr>
+                    <th>Bulan</th>
+                    <th>Angsuran Pokok (Rp)</th>
+                    <th>Angsuran Bunga (Rp)</th>
+                    <th>Anuitas (Rp)</th>
+                    <th>Sisa Saldo (Rp)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>By</p>
+
+        <p>Nazwa Andanawari Putri (30)</p>
+        
+    </footer>
+
+    <script>
+        function showPage(page) {
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('calculator').classList.add('hidden');
+            document.getElementById('result').classList.add('hidden');
+            document.getElementById(page).classList.remove('hidden');
+        }
+
+        function formatCurrency(amount) {
+    return 'Rp ' + amount
+        .toFixed(2)
+        .replace('.', ',')
+        .replace(/\d(?=(\d{3})+(?!\d))/g, '$&.');
+
+        }
+
+        function calculateAnuitas() {
+    const loan = parseFloat(document.getElementById('loan').value); // Jumlah pinjaman
+    const interestRate = parseFloat(document.getElementById('interest').value); // Suku bunga bulanan (misalnya, 0.0025 untuk 0,25%)
+    const totalMonths = parseInt(document.getElementById('period').value); // Jangka waktu dalam bulan
+
+    let anuitas;
+    const tbody = document.querySelector("#resultTable tbody");
+    tbody.innerHTML = '';
+
+    let balance = loan;
+
+    // Kalkulasi bunga flat atau majemuk
+    
+    let monthlyInterestRate = interestRate; // Suku bunga bulanan (misalnya 0,0025)
+    anuitas = (loan * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -totalMonths)); // Anuitas majemuk
+    
+
+    // Loop untuk menghitung angsuran per bulan
+    for (let i = 1; i <= totalMonths; i++) {
+        let interestPayment = balance * interestRate; // Bunga bulan ini
+        let principalPayment = anuitas - interestPayment; // Angsuran pokok
+        balance -= principalPayment; // Sisa saldo pinjaman
+
+        // Masukkan data ke tabel
+        let row = `<tr>
+                    <td>${i}</td>
+                    <td>${formatCurrency(principalPayment)}</td>
+                    <td>${formatCurrency(interestPayment)}</td>
+                    <td>${formatCurrency(anuitas)}</td>
+                    <td>${formatCurrency(balance)}</td>
+                </tr>`;
+        tbody.innerHTML += row;
+    }
+
+    showPage('result');
+
+
+
+        }
+    </script>
+</body>
+</html>
